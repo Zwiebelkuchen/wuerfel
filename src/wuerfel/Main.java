@@ -2,17 +2,25 @@ package wuerfel;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.*;
+import javafx.scene.control.Slider;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 
+import java.io.IOException;
+
 
 public class Main extends Application {
+//    final Group sliders = new Group();
+
     final Group root = new Group();
     final Group axisGroup = new Group();
     final Xform world = new Xform();
@@ -38,6 +46,18 @@ public class Main extends Application {
     double mouseOldY;
     double mouseDeltaX;
     double mouseDeltaY;
+
+
+
+    private void buidlSliders(){
+
+        Slider xAchse = new Slider(0,360,180);
+        Slider yAchse = new Slider(0,360,180);
+        Slider zAchse = new Slider(0,360,180);
+
+
+    }
+
 
 
     private void buildCamera() {
@@ -85,20 +105,54 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) {
-        Scene scene = new Scene(root, 1024, 768, true);
-        scene.setFill(Color.GREY);
-        handleKeyboard(scene, world);
-        handleMouse(scene, world);
-        primaryStage.setTitle("Würfel");
-        primaryStage.setScene(scene);
+    public void start(Stage primaryStage) throws IOException {
+//        Slider xAchse = new Slider(0,360,180);
+//        Slider yAchse = new Slider(0,360,180);
+//        Slider zAchse = new Slider(0,360,180);
+//        AnchorPane mainAPane = new AnchorPane();
+//        AnchorPane verticalObjects = new AnchorPane();
+//        mainAPane.setPrefWidth(1020);
+//        mainAPane.setPrefHeight(750);
+//        mainAPane.setStyle("-fx-border-color: black");
+//        verticalObjects.setStyle("-fx-border-color: green");
+//        verticalObjects.setPrefWidth(1000);
+//        verticalObjects.setPrefHeight(90);
+//
+//        VBox vBox = new VBox();
+//        vBox.setStyle("-fx-border-color: red");
+//        vBox.setPrefSize(verticalObjects.getPrefWidth(), verticalObjects.getPrefHeight());
+//        mainAPane.getChildren().add(verticalObjects);
+//        verticalObjects.getChildren().addAll(vBox);
+//
+//
+//
+//
+//        vBox.getChildren().addAll(xAchse,yAchse,zAchse);
+//
+//        Scene scene = new Scene(mainAPane, 1024, 768, true);
+
+//
+//
+////        Scene scene = new Scene(root, 1024, 768, true);
+//        scene.setFill(Color.GREY);
+////        handleKeyboard(scene, world);
+////        handleMouse(scene, world);
+//        primaryStage.setTitle("Würfel");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//        scene.setCamera(camera);
+//        buildScene();
+//        buildCamera();
+//        buildAxes();
+//        buildMolecule();
+//        addCube();
+
+
+        Parent window = FXMLLoader.load(getClass().getResource(Views.window.getFileName()));
+        primaryStage.setTitle("Wuerfel");
+        primaryStage.setScene(new Scene(window, 1024,650));
         primaryStage.show();
-        scene.setCamera(camera);
-        buildScene();
-        buildCamera();
-        buildAxes();
-        buildMolecule();
-        addCube();
+
     }
     /**
      * The main() method is ignored in correctly deployed JavaFX
@@ -108,9 +162,9 @@ public class Main extends Application {
      *
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
 
 
     private void buildMolecule() {
